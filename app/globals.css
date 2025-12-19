@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-be-vietnam: 'Be Vietnam Pro', sans-serif;
+  --font-fredoka: 'Fredoka', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+}
+
+body {
+  min-height: max(884px, 100dvh);
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.custom-checkbox input:checked + div {
+  background-color: #1DD1A1;
+  border-color: #1DD1A1;
+  transform: scale(1.05);
+}
+
+.custom-checkbox input:checked + div svg {
+  display: block;
+}
+
+@keyframes subtle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-subtle-bounce {
+  animation: subtle-bounce 3s infinite ease-in-out;
+}
+

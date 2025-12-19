@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Goals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1", // Indigo 500 - Energetic and reliable
+                        "primary-dark": "#4338ca",
+                        "secondary": "#ec4899", // Pink - Friendly accent
+                        "accent": "#f97316", // Orange - High priority/Attention
+                        "success": "#10b981", // Emerald - Success
+                        "background-light": "#f8fafc", // Slate 50 - Very light grey
+                        "background-dark": "#0f172a", // Slate 900
+                        "surface-dark": "#1e293b", // Slate 800
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                        "body": ["Be Vietnam Pro", "sans-serif"], 
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "3xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.06)',
+                        'glow': '0 0 20px rgba(99, 102, 241, 0.5)',
+                        'float': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { min-height: max(884px, 100dvh); }
+        .pb-safe-bottom { padding-bottom: env(safe-area-inset-bottom, 20px); }
+        .pt-safe-top { padding-top: env(safe-area-inset-top, 0px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-600 dark:text-slate-300 transition-colors duration-200 selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden bg-background-light dark:bg-background-dark border-x border-slate-200 dark:border-slate-800">
+<header class="sticky top-0 z-30 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-xl pt-safe-top transition-all">
+<div class="flex items-center justify-between px-6 py-4">
+<button class="group flex size-10 items-center justify-center rounded-full bg-white dark:bg-surface-dark border border-slate-100 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">My Goals</h1>
+<button class="flex size-10 items-center justify-center overflow-hidden rounded-full border-2 border-white dark:border-surface-dark shadow-sm">
+<img alt="User profile portrait" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz4csIsfwEgJlSEg-RZdKkHYamLOmeVa063oM8vuoG_leAlLDaMXEC8PzQFIqtDnEYTbqzeTDRyx5kEufnpA14mbO8yNnMg3dC4jR-PbCVcI8Qjd5rQ_C1IfkQUj0kP0kMJIsfs1ZaXmIAT_37-iBDIwSZuFrOYmNZlFfvVrG3nbbFaV1fOG2Dh7EpQ5GHdXtGm9mbeFZlxk_Jru9dk0FBFJbL_FoWhe3DQYdJLCBlTgyR_qqHfrpeMUcLKDhXzWhUl3uLB8O2vPs"/>
+</button>
+</div>
+<div class="px-6 pb-4">
+<div class="flex h-12 w-full items-center justify-between rounded-2xl bg-white dark:bg-surface-dark p-1.5 shadow-sm border border-slate-100 dark:border-slate-700 relative">
+<div class="absolute left-1.5 w-[calc(25%-0.5rem)] h-9 bg-primary dark:bg-primary rounded-xl shadow-md shadow-primary/30 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] translate-x-[100%] z-0"></div>
+<label class="relative z-10 flex flex-1 cursor-pointer items-center justify-center h-full rounded-xl text-xs font-bold transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+<span>Day</span>
+<input class="hidden peer" name="period" type="radio" value="Day"/>
+</label>
+<label class="relative z-10 flex flex-1 cursor-pointer items-center justify-center h-full rounded-xl text-xs font-bold transition-colors text-white dark:text-white">
+<span>Week</span>
+<input checked="" class="hidden peer" name="period" type="radio" value="Week"/>
+</label>
+<label class="relative z-10 flex flex-1 cursor-pointer items-center justify-center h-full rounded-xl text-xs font-bold transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+<span>Month</span>
+<input class="hidden peer" name="period" type="radio" value="Month"/>
+</label>
+<label class="relative z-10 flex flex-1 cursor-pointer items-center justify-center h-full rounded-xl text-xs font-bold transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+<span>Year</span>
+<input class="hidden peer" name="period" type="radio" value="Year"/>
+</label>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col gap-6 px-6 pt-2 pb-32 overflow-y-auto no-scrollbar">
+<div class="relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-6 shadow-xl shadow-indigo-500/20 text-white transform transition-transform hover:scale-[1.01] duration-300">
+<div class="relative z-10 flex justify-between items-center">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center justify-center rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm shadow-sm">On Track</span>
+</div>
+<h2 class="text-3xl font-black tracking-tight">Your Progress</h2>
+<p class="font-medium text-indigo-100/90 text-sm mt-0.5">You're crushing it! 🚀</p>
+</div>
+<div class="relative size-20 flex items-center justify-center">
+<svg class="size-full -rotate-90 transform drop-shadow-lg" viewBox="0 0 36 36">
+<path class="text-white/20" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-white drop-shadow-md" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-lg font-bold leading-none">75<span class="text-xs align-top">%</span></span>
+</div>
+</div>
+</div>
+<div class="absolute -right-8 -top-8 size-32 rounded-full bg-white/10 blur-3xl"></div>
+<div class="absolute -left-8 -bottom-8 size-32 rounded-full bg-yellow-300/20 blur-2xl"></div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                    Pending Goals
+                    <span class="flex items-center justify-center size-5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold">3</span>
+</h3>
+<button class="text-xs font-bold text-primary hover:text-primary-dark transition-colors">View All</button>
+</div>
+<div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-surface-dark p-5 shadow-soft border border-slate-100 dark:border-slate-800 transition-all hover:shadow-float hover:border-indigo-100 dark:hover:border-indigo-900/30">
+<div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-red-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="flex gap-4 items-start">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-orange-50 dark:bg-orange-900/20 text-orange-500 dark:text-orange-400 shadow-sm border border-orange-100 dark:border-orange-900/20">
+<span class="material-symbols-outlined text-[24px]">directions_run</span>
+</div>
+<div class="flex flex-1 flex-col min-w-0 gap-2">
+<div class="flex justify-between items-start">
+<h4 class="truncate text-base font-bold text-slate-900 dark:text-white">Run 5km</h4>
+<span class="inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-500/10 px-2 py-1 text-[10px] font-bold text-orange-600 dark:text-orange-400 border border-orange-200 dark:border-orange-500/20">High Priority</span>
+</div>
+<p class="truncate text-xs font-medium text-slate-400 dark:text-slate-500">Morning cardio in the park</p>
+<div class="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[14px] text-slate-400">calendar_today</span>
+<span>Due Today, 8:00 AM</span>
+</div>
+<div class="mt-1 flex items-center gap-3 w-full">
+<div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-gradient-to-r from-orange-400 to-amber-400 transition-all duration-500 ease-out" style="width: 75%;"></div>
+</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300 tabular-nums">75%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-surface-dark p-5 shadow-soft border border-slate-100 dark:border-slate-800 transition-all hover:shadow-float hover:border-blue-100 dark:hover:border-blue-900/30">
+<div class="flex gap-4 items-start">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-500 dark:text-blue-400 shadow-sm border border-blue-100 dark:border-blue-900/20">
+<span class="material-symbols-outlined text-[24px]">auto_stories</span>
+</div>
+<div class="flex flex-1 flex-col min-w-0 gap-2">
+<div class="flex justify-between items-start">
+<h4 class="truncate text-base font-bold text-slate-900 dark:text-white">Read 30 mins</h4>
+<span class="inline-flex items-center rounded-full bg-blue-100 dark:bg-blue-500/10 px-2 py-1 text-[10px] font-bold text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-500/20">Medium</span>
+</div>
+<p class="truncate text-xs font-medium text-slate-400 dark:text-slate-500">Finish Chapter 4 of Atomic Habits</p>
+<div class="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[14px] text-slate-400">event</span>
+<span>Due Tomorrow</span>
+</div>
+<div class="mt-1 flex items-center gap-3 w-full">
+<div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-500 ease-out" style="width: 40%;"></div>
+</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300 tabular-nums">40%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-surface-dark p-5 shadow-soft border border-slate-100 dark:border-slate-800 transition-all hover:shadow-float hover:border-teal-100 dark:hover:border-teal-900/30">
+<div class="flex gap-4 items-start">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-teal-50 dark:bg-teal-900/20 text-teal-500 dark:text-teal-400 shadow-sm border border-teal-100 dark:border-teal-900/20">
+<span class="material-symbols-outlined text-[24px]">water_drop</span>
+</div>
+<div class="flex flex-1 flex-col min-w-0 gap-2">
+<div class="flex justify-between items-start">
+<h4 class="truncate text-base font-bold text-slate-900 dark:text-white">Hydration</h4>
+<span class="inline-flex items-center rounded-full bg-teal-100 dark:bg-teal-500/10 px-2 py-1 text-[10px] font-bold text-teal-600 dark:text-teal-400 border border-teal-200 dark:border-teal-500/20">Low</span>
+</div>
+<p class="truncate text-xs font-medium text-slate-400 dark:text-slate-500">Drink 8 glasses of water</p>
+<div class="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[14px] text-slate-400">schedule</span>
+<span>Daily Goal</span>
+</div>
+<div class="mt-1 flex items-center gap-3 w-full">
+<div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 transition-all duration-500 ease-out" style="width: 90%;"></div>
+</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300 tabular-nums">90%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-3xl bg-slate-50 dark:bg-surface-dark/40 p-5 shadow-none border border-transparent dark:border-slate-800 opacity-80 hover:opacity-100 transition-all">
+<div class="flex gap-4 items-start">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-[24px]">check_circle</span>
+</div>
+<div class="flex flex-1 flex-col min-w-0 gap-2">
+<div class="flex justify-between items-start">
+<h4 class="truncate text-base font-bold text-slate-500 dark:text-slate-400 line-through decoration-slate-400/50">Meditation</h4>
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-500/10 px-2 py-1 text-[10px] font-bold text-green-700 dark:text-green-400">Done</span>
+</div>
+<p class="truncate text-xs font-medium text-slate-400 dark:text-slate-500">15 mins mindfulness</p>
+<div class="flex items-center gap-1.5 text-xs font-medium text-green-600/70 dark:text-green-400/70">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+<span>Completed today</span>
+</div>
+<div class="mt-1 flex items-center gap-3 w-full">
+<div class="h-2 flex-1 overflow-hidden rounded-full bg-green-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-green-500 transition-all duration-500 ease-out" style="width: 100%;"></div>
+</div>
+<span class="text-xs font-bold text-green-600 dark:text-green-400 tabular-nums">100%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="absolute bottom-24 right-6 z-40">
+<button class="flex size-16 items-center justify-center rounded-full bg-primary text-white shadow-glow hover:scale-110 hover:rotate-90 active:scale-95 transition-all duration-300 group">
+<span class="material-symbols-outlined text-[32px] group-hover:scale-110 transition-transform">add</span>
+</button>
+</div>
+<nav class="absolute bottom-0 z-30 w-full bg-white/90 dark:bg-background-dark/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 pb-safe-bottom shadow-[0_-4px_20px_rgba(0,0,0,0.02)]">
+<div class="flex justify-around items-center h-[70px]">
+<button class="group flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-primary transition-colors gap-1.5">
+<div class="p-1 rounded-xl group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/20 transition-colors">
+<span class="material-symbols-outlined text-[26px]">home</span>
+</div>
+</button>
+<button class="flex flex-col items-center justify-center w-full h-full text-primary gap-1.5 relative">
+<div class="p-1 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-primary">
+<span class="material-symbols-outlined text-[26px] fill-current">flag</span>
+</div>
+<div class="absolute top-3 right-[30%] h-2 w-2 rounded-full bg-accent ring-2 ring-white dark:ring-background-dark"></div>
+</button>
+<button class="group flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-primary transition-colors gap-1.5">
+<div class="p-1 rounded-xl group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/20 transition-colors">
+<span class="material-symbols-outlined text-[26px]">bar_chart</span>
+</div>
+</button>
+<button class="group flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-primary transition-colors gap-1.5">
+<div class="p-1 rounded-xl group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/20 transition-colors">
+<span class="material-symbols-outlined text-[26px]">person</span>
+</div>
+</button>
+</div>
+</nav>
+</div>
+
+</body></html>

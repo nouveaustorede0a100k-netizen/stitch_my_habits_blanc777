@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Habit Tracker Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF9F43","primary-soft": "#FFF0E0","secondary": "#54A0FF","success": "#1DD1A1","background-main": "#FDFDFD","card-bg": "#FFFFFF","text-dark": "#2d3436","text-light": "#636e72","accent-purple": "#a55eea",
+                        "accent-pink": "#ef5777",
+                    },
+                    fontFamily: {
+                        "display": ["Fredoka", "sans-serif"],
+                        "body": ["Nunito", "sans-serif"],
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+                        "floating": "0 10px 25px -5px rgba(255, 159, 67, 0.4)",
+                        "card": "0 2px 10px rgba(0,0,0,0.03)"
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.custom-checkbox input:checked + div {
+            background-color: #1DD1A1;
+            border-color: #1DD1A1;
+            transform: scale(1.05);
+        }
+        .custom-checkbox input:checked + div svg {
+            display: block;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }@keyframes subtle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-subtle-bounce {
+            animation: subtle-bounce 3s infinite ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#f0f2f5] text-text-dark font-body antialiased overflow-x-hidden transition-colors duration-200">
+<div class="relative min-h-screen w-full flex flex-col max-w-md mx-auto shadow-2xl overflow-hidden bg-background-main">
+<div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#e3f2fd] to-transparent -z-10 rounded-b-[3rem]"></div>
+<header class="flex items-center justify-between p-6 pb-2 z-10">
+<button class="flex items-center justify-center p-2 -ml-2 rounded-full hover:bg-black/5 transition-colors text-text-dark">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+<div class="flex items-center justify-end">
+<button class="relative flex items-center justify-center overflow-hidden rounded-full h-11 w-11 bg-white ring-4 ring-white shadow-sm">
+<img alt="User Profile" class="object-cover h-full w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPT8aAjBAJ2ryFkQHO4ZcOamHEn1twOTITbuuQeEYKkhLupqoy6isFIv_wkBbe_OGGVbBOQMeQ620edhv6TzGVTEcSpo5U471kFCKvisN9iZWFgF12dDdnmeeBtkUcSAxr8hSLon0lTJZCka9_7XdsfBnAjZfR4H7gAn0S8kNc_KtJbgVXrMr3h1NE-yVmxXG6VihyvkaDtXkprOa45a0rNNG_7UdL7NYesF87E_wUjgCDO7hCmT4UAi0ugk_y5KPRyN4eBRqQibo"/>
+</button>
+</div>
+</header>
+<div class="px-6 py-2">
+<p class="text-secondary font-bold text-sm mb-1 tracking-wide uppercase">Good Morning, Alex! ☀️</p>
+<h1 class="text-text-dark tracking-tight text-3xl font-display font-semibold leading-tight">Tuesday, Oct 24</h1>
+</div>
+<div class="px-6 py-4">
+<div class="bg-card-bg rounded-3xl p-6 shadow-soft border border-gray-100 relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary-soft rounded-full opacity-50"></div>
+<div class="absolute -left-6 -bottom-6 w-20 h-20 bg-blue-50 rounded-full opacity-50"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="text-text-dark text-xl font-display font-bold">Daily Progress</p>
+<p class="text-text-light text-sm mt-1 font-medium">4 of 6 habits completed</p>
+</div>
+<div class="flex items-center gap-1 bg-green-50 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-success text-xl">emoji_events</span>
+<span class="text-success font-bold text-lg font-display">65%</span>
+</div>
+</div>
+<div class="relative h-4 w-full bg-gray-100 rounded-full overflow-hidden mb-2">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-success to-emerald-400 rounded-full transition-all duration-1000 ease-out" style="width: 65%;"></div>
+</div>
+<p class="text-text-light text-xs mt-3 font-semibold flex items-center gap-2">
+<span class="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20">
+<span class="material-symbols-outlined text-[12px] text-primary">trending_up</span>
+</span>
+                        You're crushing it today! Keep going! 🚀
+                    </p>
+</div>
+</div>
+</div>
+<div class="px-6 py-2">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-text-dark text-xl font-display font-bold">This Week</h2>
+<button class="text-secondary text-sm font-bold bg-blue-50 px-3 py-1 rounded-lg hover:bg-blue-100 transition-colors">View All</button>
+</div>
+<div class="flex justify-between items-center bg-card-bg p-4 rounded-2xl shadow-card border border-gray-50">
+<div class="flex flex-col items-center gap-2">
+<span class="text-[11px] font-bold text-text-light uppercase tracking-wider">Sun</span>
+<div class="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-50 text-text-light text-sm font-bold">22</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="text-[11px] font-bold text-text-light uppercase tracking-wider">Mon</span>
+<div class="w-9 h-9 flex items-center justify-center rounded-xl bg-green-100 text-success text-sm font-bold">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 transform scale-110">
+<span class="text-[11px] font-bold text-primary uppercase tracking-wider">Tue</span>
+<div class="w-9 h-9 flex items-center justify-center rounded-xl bg-primary text-white text-sm font-bold shadow-lg shadow-orange-200">24</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="text-[11px] font-bold text-text-light uppercase tracking-wider">Wed</span>
+<div class="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-50 text-text-light text-sm font-bold">25</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="text-[11px] font-bold text-text-light uppercase tracking-wider">Thu</span>
+<div class="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-50 text-text-light text-sm font-bold">26</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="text-[11px] font-bold text-text-light uppercase tracking-wider">Fri</span>
+<div class="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-50 text-text-light text-sm font-bold">27</div>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 flex-1">
+<h2 class="text-text-dark text-xl font-display font-bold mb-4 flex items-center gap-2">
+                Today's Habits 
+                <span class="text-sm font-normal text-text-light bg-gray-100 px-2 py-0.5 rounded-full">3</span>
+</h2>
+<div class="flex flex-col gap-4">
+<div class="group flex items-center gap-4 bg-card-bg p-4 pr-5 rounded-2xl shadow-soft hover:shadow-md transition-all duration-200 border-l-4 border-blue-400">
+<div class="flex-shrink-0 size-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined text-2xl">water_drop</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-text-dark font-bold text-base font-display truncate">Drink 2L Water</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-primary text-[16px] fill-1">local_fire_department</span>
+<span class="text-text-light text-xs font-semibold">12 Day Streak</span>
+</div>
+</div>
+<label class="custom-checkbox relative flex items-center justify-center cursor-pointer">
+<input class="sr-only" type="checkbox"/>
+<div class="w-8 h-8 rounded-xl border-2 border-gray-200 bg-white transition-all duration-200 flex items-center justify-center group-hover:border-success">
+<svg class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path></svg>
+</div>
+</label>
+</div>
+<div class="group flex items-center gap-4 bg-card-bg p-4 pr-5 rounded-2xl shadow-soft hover:shadow-md transition-all duration-200 border-l-4 border-accent-purple">
+<div class="flex-shrink-0 size-12 rounded-xl bg-purple-50 flex items-center justify-center text-accent-purple">
+<span class="material-symbols-outlined text-2xl">menu_book</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-text-dark font-bold text-base font-display truncate">Read 20 pages</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-primary text-[16px] fill-1">local_fire_department</span>
+<span class="text-text-light text-xs font-semibold">5 Day Streak</span>
+</div>
+</div>
+<label class="custom-checkbox relative flex items-center justify-center cursor-pointer">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="w-8 h-8 rounded-xl border-2 border-gray-200 bg-white transition-all duration-200 flex items-center justify-center">
+<svg class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path></svg>
+</div>
+</label>
+</div>
+<div class="group flex items-center gap-4 bg-gray-50 p-4 pr-5 rounded-2xl border border-gray-100 opacity-70">
+<div class="flex-shrink-0 size-12 rounded-xl bg-red-50 flex items-center justify-center text-accent-pink">
+<span class="material-symbols-outlined text-2xl">directions_run</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-text-light font-bold text-base font-display truncate line-through decoration-2 decoration-gray-300">Morning Run</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-gray-400 text-[16px]">pause_circle</span>
+<span class="text-gray-400 text-xs font-semibold">Skipped today</span>
+</div>
+</div>
+<div class="flex items-center justify-center text-text-light text-xs font-bold px-3 py-1 rounded-full bg-gray-200">
+                        Rest Day
+                    </div>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 pb-28">
+<h2 class="text-text-dark text-xl font-display font-bold mb-4">Today's Goals</h2>
+<div class="flex flex-col gap-3 bg-white p-4 rounded-2xl shadow-card">
+<div class="flex items-start gap-3 p-2 rounded-xl hover:bg-gray-50 transition-colors">
+<label class="custom-checkbox mt-0.5 relative flex items-center justify-center cursor-pointer">
+<input class="sr-only" type="checkbox"/>
+<div class="w-5 h-5 rounded-md border-2 border-gray-300 bg-transparent transition-colors duration-200 flex items-center justify-center hover:border-primary">
+<svg class="w-3.5 h-3.5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
+</div>
+</label>
+<div class="flex-1">
+<p class="text-text-dark text-sm font-semibold leading-tight">Finish Q3 Report slides</p>
+</div>
+<span class="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide bg-orange-100 text-orange-500">High</span>
+</div>
+<div class="h-px w-full bg-gray-100"></div>
+<div class="flex items-start gap-3 p-2 rounded-xl hover:bg-gray-50 transition-colors">
+<label class="custom-checkbox mt-0.5 relative flex items-center justify-center cursor-pointer">
+<input class="sr-only" type="checkbox"/>
+<div class="w-5 h-5 rounded-md border-2 border-gray-300 bg-transparent transition-colors duration-200 flex items-center justify-center hover:border-primary">
+<svg class="w-3.5 h-3.5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
+</div>
+</label>
+<div class="flex-1">
+<p class="text-text-dark text-sm font-semibold leading-tight">Grocery shopping</p>
+</div>
+<span class="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide bg-blue-100 text-blue-500">Med</span>
+</div>
+<div class="h-px w-full bg-gray-100"></div>
+<div class="flex items-start gap-3 p-2 rounded-xl hover:bg-gray-50 transition-colors opacity-60">
+<label class="custom-checkbox mt-0.5 relative flex items-center justify-center cursor-pointer">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="w-5 h-5 rounded-md border-2 border-gray-300 bg-transparent transition-colors duration-200 flex items-center justify-center">
+<svg class="w-3.5 h-3.5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
+</div>
+</label>
+<div class="flex-1">
+<p class="text-text-light line-through text-sm font-medium leading-tight">Call mom</p>
+</div>
+<span class="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide bg-gray-100 text-gray-400">Low</span>
+</div>
+</div>
+</div>
+<button class="fixed bottom-8 right-6 size-16 bg-primary text-white rounded-2xl shadow-floating flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-200 z-50 animate-subtle-bounce group">
+<span class="material-symbols-outlined text-4xl group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+</div>
+
+</body></html>

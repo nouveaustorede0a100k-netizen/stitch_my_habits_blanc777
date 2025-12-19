@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Habit Tracker Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4F46E5","primary-light": "#818CF8","secondary": "#FB923C","success": "#10B981","success-light": "#D1FAE5","background-light": "#F3F4F6","surface-white": "#FFFFFF",
+                        "text-main": "#1F2937","text-muted": "#6B7280","status-missed": "#F87171","status-partial": "#FBBF24",},
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px" },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E5E7EB;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D1D5DB;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light text-text-main font-display transition-colors duration-200 min-h-screen flex flex-col overflow-x-hidden">
+<header class="flex items-center justify-between p-6 sticky top-0 z-50 bg-background-light/95 backdrop-blur-md">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-white transition-colors text-text-main shadow-sm bg-white/50">
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-text-main">Monthly Progress</h1>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-white transition-colors text-text-main shadow-sm bg-white/50">
+<span class="material-symbols-outlined" style="font-size: 24px;">settings</span>
+</button>
+</header>
+<main class="flex-1 w-full max-w-md mx-auto px-6 pb-28">
+<div class="mb-6 flex items-center justify-between bg-gradient-to-r from-primary to-primary-light rounded-3xl p-5 text-white shadow-soft">
+<div>
+<p class="text-indigo-100 text-sm font-medium mb-1">Keep it up!</p>
+<h2 class="text-2xl font-bold">Great Streak 🔥</h2>
+</div>
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-2xl">
+<span class="text-3xl">🏆</span>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between px-2">
+<button class="p-2 rounded-xl hover:bg-white text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex flex-col items-center">
+<h2 class="text-lg font-bold text-text-main">October 2023</h2>
+<span class="text-xs text-text-muted font-medium">12 Goals Completed</span>
+</div>
+<button class="p-2 rounded-xl hover:bg-white text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="bg-surface-white rounded-3xl p-6 shadow-soft border border-slate-100">
+<div class="grid grid-cols-7 mb-4">
+<div class="text-center text-[10px] font-bold tracking-widest uppercase text-text-muted opacity-60">S</div>
+<div class="text-center text-[10px] font-bold tracking-widest uppercase text-text-muted opacity-60">M</div>
+<div class="text-center text-[10px] font-bold tracking-widest uppercase text-text-muted opacity-60">T</div>
+<div class="text-center text-[10px] font-bold tracking-widest uppercase text-text-muted opacity-60">W</div>
+<div class="text-center text-[10px] font-bold tracking-widest uppercase text-text-muted opacity-60">T</div>
+<div class="text-center text-[10px] font-bold tracking-widest uppercase text-text-muted opacity-60">F</div>
+<div class="text-center text-[10px] font-bold tracking-widest uppercase text-text-muted opacity-60">S</div>
+</div>
+<div class="grid grid-cols-7 gap-y-3 gap-x-1">
+<div class="aspect-square flex items-center justify-center text-gray-300 text-sm">28</div>
+<div class="aspect-square flex items-center justify-center text-gray-300 text-sm">29</div>
+<div class="aspect-square flex items-center justify-center text-gray-300 text-sm">30</div>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50 transition-all">
+<span class="text-sm text-text-muted font-medium">1</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center rounded-2xl bg-red-50 text-status-missed transition-all relative">
+<span class="text-sm font-bold z-10">2</span>
+<div class="w-1 h-1 bg-status-missed rounded-full mt-1"></div>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center rounded-2xl bg-success text-white shadow-md shadow-success/30 transition-all transform hover:scale-105">
+<span class="text-sm font-bold">3</span>
+<span class="material-symbols-outlined text-[10px] mt-0.5">star</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center rounded-2xl bg-success-light text-success-dark transition-all">
+<span class="text-sm font-bold text-success">4</span>
+</button>
+<button class="aspect-square flex items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/30 ring-2 ring-offset-2 ring-primary transition-all relative z-10">
+<span class="text-sm font-bold">5</span>
+</button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50 transition-all">
+<span class="text-sm text-text-muted font-medium">6</span>
+</button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50 transition-all">
+<span class="text-sm text-text-muted font-medium">7</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center rounded-2xl bg-amber-50 text-status-partial transition-all">
+<span class="text-sm font-bold">8</span>
+<div class="w-1 h-1 bg-status-partial rounded-full mt-1"></div>
+</button>
+<button class="aspect-square flex items-center justify-center rounded-2xl bg-success-light"><span class="text-sm font-bold text-success">9</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl bg-success-light"><span class="text-sm font-bold text-success">10</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl bg-success-light/60"><span class="text-sm font-bold text-success/80">11</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">12</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">13</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">14</span></button>
+<button class="aspect-square flex flex-col items-center justify-center rounded-2xl bg-red-50 text-status-missed"><span class="text-sm font-bold">15</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl bg-success text-white shadow-sm"><span class="text-sm font-bold">16</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl bg-success text-white shadow-sm"><span class="text-sm font-bold">17</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">18</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">19</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">20</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">21</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">22</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">23</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">24</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">25</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">26</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">27</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">28</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">29</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">30</span></button>
+<button class="aspect-square flex items-center justify-center rounded-2xl hover:bg-gray-50"><span class="text-sm text-text-muted font-medium">31</span></button>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center gap-2 overflow-x-auto">
+<div class="flex flex-col items-center gap-1">
+<div class="w-3 h-3 rounded-full bg-success"></div>
+<span class="text-[10px] text-text-muted font-medium uppercase tracking-wider">Perfect</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-3 h-3 rounded-full bg-success-light"></div>
+<span class="text-[10px] text-text-muted font-medium uppercase tracking-wider">Good</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-3 h-3 rounded-full bg-amber-100"></div>
+<span class="text-[10px] text-text-muted font-medium uppercase tracking-wider">Partial</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-3 h-3 rounded-full bg-red-100"></div>
+<span class="text-[10px] text-text-muted font-medium uppercase tracking-wider">Missed</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex items-center justify-between mb-4 px-2">
+<h2 class="text-xl font-bold text-text-main">Oct 5 Summary</h2>
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">Today</span>
+</div>
+<div class="bg-surface-white rounded-3xl p-5 shadow-soft border border-slate-100 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs text-text-muted font-semibold uppercase tracking-wider mb-1">Completion Rate</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-extrabold text-primary">80%</span>
+<span class="text-sm text-success font-medium bg-success/10 px-2 py-0.5 rounded-lg">Almost there!</span>
+</div>
+</div>
+<div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-secondary to-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-200">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<div class="h-px bg-slate-100 w-full my-1"></div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4 p-3 rounded-2xl bg-blue-50/50 hover:bg-blue-50 transition-colors cursor-pointer group border border-transparent hover:border-blue-100">
+<div class="h-10 w-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm text-text-main">Drink Water</h3>
+<div class="w-full bg-blue-100 h-1.5 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-blue-500 h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div class="h-8 w-8 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-2xl bg-purple-50/50 hover:bg-purple-50 transition-colors cursor-pointer group border border-transparent hover:border-purple-100">
+<div class="h-10 w-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">directions_run</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm text-text-main">Morning Run</h3>
+<div class="w-full bg-purple-100 h-1.5 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-purple-500 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="h-8 w-8 rounded-full bg-purple-500 text-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-2xl bg-gray-50 hover:bg-white border border-transparent hover:border-slate-200 transition-colors cursor-pointer group shadow-sm hover:shadow-md">
+<div class="h-10 w-10 rounded-xl bg-gray-200 text-gray-500 flex items-center justify-center group-hover:bg-gray-800 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm text-text-main">Read Book</h3>
+<p class="text-xs text-text-muted mt-0.5">30 mins goal</p>
+</div>
+<div class="h-8 w-8 rounded-full border-2 border-gray-300 flex items-center justify-center text-transparent hover:text-gray-300">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-24 right-6 z-40">
+<button class="h-16 w-16 rounded-full bg-gradient-to-r from-secondary to-orange-500 shadow-xl shadow-orange-500/30 flex items-center justify-center text-white hover:scale-105 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+</button>
+</div>
+<nav class="fixed bottom-0 w-full bg-white/90 backdrop-blur-lg border-t border-slate-100 pb-8 pt-3 px-6 z-50 rounded-t-3xl shadow-[0_-5px_20px_-5px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<button class="flex flex-col items-center gap-1.5 p-2 text-text-muted hover:text-primary transition-colors group">
+<span class="material-symbols-outlined group-hover:-translate-y-0.5 transition-transform">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 p-2 text-primary transition-colors">
+<div class="bg-primary/10 px-4 py-1 rounded-full">
+<span class="material-symbols-outlined fill-current">calendar_month</span>
+</div>
+<span class="text-[10px] font-bold">Calendar</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 p-2 text-text-muted hover:text-primary transition-colors group">
+<span class="material-symbols-outlined group-hover:-translate-y-0.5 transition-transform">bar_chart</span>
+<span class="text-[10px] font-bold">Stats</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 p-2 text-text-muted hover:text-primary transition-colors group">
+<span class="material-symbols-outlined group-hover:-translate-y-0.5 transition-transform">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</div>
+</nav>
+
+</body></html>

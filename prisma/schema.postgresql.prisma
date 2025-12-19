@@ -1,0 +1,133 @@
+// Schéma Prisma pour PostgreSQL (Production)
+// Copiez ce contenu dans schema.prisma si vous utilisez PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?
+  image         String?
+  timezone      String    @default("Europe/Paris")
+  theme         String    @default("light")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  habits        Habit[]
+  goals         Goal[]
+  habitLogs     HabitLog[]
+  goalProgress  GoalProgress[]
+  notes         Note[]
+  
+  @@map("users")
+}
+
+model Habit {
+  id            String    @id @default(cuid())
+  userId        String
+  name          String
+  description   String?
+  category      String
+  frequency     String    @default("daily")
+  specificDays  String?
+  reminderTime  String?
+  reminderEnabled Boolean @default(true)
+  icon          String?
+  color         String?
+  motivation    String?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logs          HabitLog[]
+  
+  @@map("habits")
+}
+
+model HabitLog {
+  id            String    @id @default(cuid())
+  habitId       String
+  userId        String
+  date          DateTime  @default(now())
+  completed     Boolean   @default(true)
+  notes         String?
+  createdAt     DateTime  @default(now())
+  
+  habit         Habit     @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([habitId, date])
+  @@map("habit_logs")
+  @@index([habitId, date])
+  @@index([userId, date])
+}
+
+model Goal {
+  id            String    @id @default(cuid())
+  userId        String
+  title         String
+  description   String?
+  period        String
+  priority      String    @default("medium")
+  startDate     DateTime
+  dueDate       DateTime?
+  status        String    @default("in_progress")
+  progress      Float     @default(0)
+  motivation    String?
+  parentGoalId  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parentGoal    Goal?     @relation("GoalSubGoals", fields: [parentGoalId], references: [id])
+  subGoals      Goal[]    @relation("GoalSubGoals")
+  progressLogs  GoalProgress[]
+  
+  @@map("goals")
+  @@index([userId, period, status])
+}
+
+model GoalProgress {
+  id            String    @id @default(cuid())
+  goalId        String
+  userId        String
+  date          DateTime  @default(now())
+  progress      Float
+  notes         String?
+  createdAt     DateTime  @default(now())
+  
+  goal          Goal      @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("goal_progress")
+  @@index([goalId, date])
+  @@index([userId, date])
+}
+
+model Note {
+  id            String    @id @default(cuid())
+  userId        String
+  title         String?
+  content       String
+  type          String    @default("general")
+  relatedHabitId String?
+  relatedGoalId  String?
+  date          DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("notes")
+  @@index([userId, date])
+}
+

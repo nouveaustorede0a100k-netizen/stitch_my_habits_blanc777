@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Statistics Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10b981", // More vibrant emerald
+                        "primary-light": "#d1fae5",
+                        "background-light": "#f0fdf4", // Very subtle green tint
+                        "background-dark": "#0f172a", // Deep slate
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b", 
+                        "secondary-dark": "#334155",
+                        "accent-blue": "#3b82f6",
+                        "accent-orange": "#f97316",
+                        "accent-purple": "#8b5cf6",
+                        "accent-pink": "#ec4899",
+                        "accent-yellow": "#eab308"
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "3xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(16, 185, 129, 0.3)'
+                    }
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>.no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    body {
+        min-height: max(884px, 100dvh);
+        font-family: 'Be Vietnam Pro', sans-serif;
+    }h1, h2, h3, .stat-value {
+        font-family: 'Quicksand', sans-serif;
+    }
+</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 antialiased overflow-x-hidden pb-28 selection:bg-primary selection:text-white">
+<div class="sticky top-0 z-50 flex items-center bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-6 py-4 justify-between">
+<button class="text-slate-800 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-surface-dark shadow-sm hover:scale-105 transition-transform active:scale-95 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<h2 class="text-slate-800 dark:text-white text-xl font-bold leading-tight tracking-tight text-center">Your Progress</h2>
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-surface-dark shadow-sm hover:scale-105 transition-transform active:scale-95 border border-slate-100 dark:border-slate-700 text-slate-800 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<div class="px-6 py-2">
+<div class="flex h-14 w-full items-center justify-center rounded-2xl bg-white dark:bg-surface-dark p-1.5 shadow-soft shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800">
+<label class="relative z-10 flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-xl transition-all duration-300">
+<input checked="" class="peer invisible w-0 absolute" name="period" type="radio" value="7d"/>
+<span class="absolute inset-0 bg-primary opacity-0 transition-opacity duration-300 peer-checked:opacity-100 rounded-xl shadow-lg shadow-primary/30"></span>
+<span class="relative z-20 text-xs font-bold text-slate-500 dark:text-slate-400 transition-colors duration-200 peer-checked:text-white">7 Days</span>
+</label>
+<label class="relative z-10 flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-xl transition-all duration-300">
+<input class="peer invisible w-0 absolute" name="period" type="radio" value="30d"/>
+<span class="absolute inset-0 bg-primary opacity-0 transition-opacity duration-300 peer-checked:opacity-100 rounded-xl shadow-lg shadow-primary/30"></span>
+<span class="relative z-20 text-xs font-bold text-slate-500 dark:text-slate-400 transition-colors duration-200 peer-checked:text-white">30 Days</span>
+</label>
+<label class="relative z-10 flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-xl transition-all duration-300">
+<input class="peer invisible w-0 absolute" name="period" type="radio" value="90d"/>
+<span class="absolute inset-0 bg-primary opacity-0 transition-opacity duration-300 peer-checked:opacity-100 rounded-xl shadow-lg shadow-primary/30"></span>
+<span class="relative z-20 text-xs font-bold text-slate-500 dark:text-slate-400 transition-colors duration-200 peer-checked:text-white">90 Days</span>
+</label>
+<label class="relative z-10 flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-xl transition-all duration-300">
+<input class="peer invisible w-0 absolute" name="period" type="radio" value="1y"/>
+<span class="absolute inset-0 bg-primary opacity-0 transition-opacity duration-300 peer-checked:opacity-100 rounded-xl shadow-lg shadow-primary/30"></span>
+<span class="relative z-20 text-xs font-bold text-slate-500 dark:text-slate-400 transition-colors duration-200 peer-checked:text-white">1 Year</span>
+</label>
+</div>
+</div>
+<div class="px-6 py-4">
+<div class="flex flex-col gap-6 rounded-[2rem] bg-surface-light dark:bg-surface-dark p-6 shadow-soft shadow-emerald-500/5 dark:shadow-none ring-1 ring-slate-100 dark:ring-white/5 relative overflow-hidden group">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors duration-500"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<div class="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[18px]">monitoring</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">Completion Rate</p>
+</div>
+<div class="flex items-baseline gap-3 mt-2">
+<p class="text-slate-800 dark:text-white text-5xl font-bold tracking-tight stat-value">82%</p>
+<div class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-xs font-bold bg-emerald-100 dark:bg-emerald-900/30 px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>5%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="relative h-[160px] w-full mt-2">
+<svg class="overflow-visible" fill="none" height="100%" preserveAspectRatio="none" viewBox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="chartGradient" x1="236" x2="236" y1="20" y2="150">
+<stop stop-color="#10b981" stop-opacity="0.3"></stop>
+<stop offset="1" stop-color="#10b981" stop-opacity="0"></stop>
+</linearGradient>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<feGaussianBlur result="coloredBlur" stdDeviation="4"></feGaussianBlur>
+<feMerge>
+<feMergeNode in="coloredBlur"></feMergeNode>
+<feMergeNode in="SourceGraphic"></feMergeNode>
+</feMerge>
+</filter>
+</defs>
+<path d="M0 109C18.15 109 18.15 41 36.31 41C54.46 41 54.46 61 72.62 61C90.77 61 90.77 113 108.92 113C127.08 113 127.08 53 145.23 53C163.39 53 163.39 121 181.54 121C199.69 121 199.69 81 217.85 81C236 81 236 65 254.15 65C272.31 65 272.31 141 290.46 141C308.62 141 308.62 149 326.77 149C344.92 149 344.92 21 363.08 21C381.23 21 381.23 101 399.39 101C417.54 101 417.54 129 435.69 129C453.85 129 453.85 45 472 45V160H0V109Z" fill="url(#chartGradient)"></path>
+<path d="M0 109C18.15 109 18.15 41 36.31 41C54.46 41 54.46 61 72.62 61C90.77 61 90.77 113 108.92 113C127.08 113 127.08 53 145.23 53C163.39 53 163.39 121 181.54 121C199.69 121 199.69 81 217.85 81C236 81 236 65 254.15 65C272.31 65 272.31 141 290.46 141C308.62 141 308.62 149 326.77 149C344.92 149 344.92 21 363.08 21C381.23 21 381.23 101 399.39 101C417.54 101 417.54 129 435.69 129C453.85 129 453.85 45 472 45" filter="url(#glow)" stroke="#10b981" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<circle cx="363.08" cy="21" fill="#ffffff" r="6" stroke="#10b981" stroke-width="4"></circle>
+<g transform="translate(363.08, -10)">
+<rect fill="#1e293b" height="24" rx="8" width="48" x="-24" y="-28"></rect>
+<text fill="white" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" x="0" y="-12">100%</text>
+<path d="M-4 -4 L0 0 L4 -4" fill="#1e293b"></path>
+</g>
+</svg>
+</div>
+<div class="flex justify-between px-2 pt-2 border-t border-slate-100 dark:border-white/5">
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase">Mon</p>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase">Tue</p>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase">Wed</p>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase">Thu</p>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase">Fri</p>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase">Sat</p>
+<p class="text-primary font-bold text-[10px] uppercase">Sun</p>
+</div>
+</div>
+</div>
+<div class="px-6 pb-2">
+<h3 class="text-slate-800 dark:text-white text-lg font-bold mb-4 px-1 flex items-center gap-2">
+        Key Metrics
+    </h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative flex flex-col gap-1 p-5 rounded-[2rem] bg-surface-light dark:bg-surface-dark shadow-soft shadow-blue-500/5 dark:shadow-none overflow-hidden ring-1 ring-slate-100 dark:ring-white/5 group">
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-xl group-hover:scale-110 transition-transform"></div>
+<div class="relative z-10 size-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-2 shadow-lg shadow-blue-500/30 text-white">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<p class="relative z-10 text-slate-800 dark:text-white text-3xl font-bold stat-value">87%</p>
+<p class="relative z-10 text-slate-500 dark:text-slate-400 text-xs font-semibold">Success Rate</p>
+</div>
+<div class="relative flex flex-col gap-1 p-5 rounded-[2rem] bg-surface-light dark:bg-surface-dark shadow-soft shadow-orange-500/5 dark:shadow-none overflow-hidden ring-1 ring-slate-100 dark:ring-white/5 group">
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-orange-100/50 dark:bg-orange-900/20 rounded-full blur-xl group-hover:scale-110 transition-transform"></div>
+<div class="relative z-10 size-10 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center mb-2 shadow-lg shadow-orange-500/30 text-white">
+<span class="material-symbols-outlined text-[20px] fill-1">local_fire_department</span>
+</div>
+<p class="relative z-10 text-slate-800 dark:text-white text-3xl font-bold stat-value">42<span class="text-sm font-bold ml-1 text-slate-400">Days</span></p>
+<p class="relative z-10 text-slate-500 dark:text-slate-400 text-xs font-semibold">Longest Streak</p>
+</div>
+<div class="col-span-2 relative flex items-center justify-between p-6 rounded-[2rem] bg-surface-light dark:bg-surface-dark shadow-soft shadow-purple-500/5 dark:shadow-none overflow-hidden ring-1 ring-slate-100 dark:ring-white/5 group">
+<div class="absolute right-0 top-0 w-32 h-32 bg-purple-100/50 dark:bg-purple-900/20 rounded-full blur-2xl group-hover:scale-110 transition-transform"></div>
+<div class="relative z-10 flex flex-col gap-1">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">Total Completed</p>
+<p class="text-slate-800 dark:text-white text-4xl font-bold stat-value">1,240 <span class="text-lg font-normal text-slate-400">Habits</span></p>
+</div>
+<div class="relative z-10 size-14 rounded-2xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/30 text-white rotate-3 group-hover:rotate-12 transition-transform duration-300">
+<span class="material-symbols-outlined text-[28px]">emoji_events</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 py-4">
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="text-slate-800 dark:text-white text-lg font-bold">Top 5 Habits</h3>
+<button class="text-primary hover:text-emerald-600 text-sm font-bold bg-primary/10 hover:bg-primary/20 px-3 py-1 rounded-full transition-colors">See All</button>
+</div>
+<div class="flex flex-col gap-3">
+<div class="group flex items-center gap-4 p-4 rounded-[1.5rem] bg-surface-light dark:bg-surface-dark shadow-sm active:scale-[0.99] transition-all ring-1 ring-slate-100 dark:ring-white/5 hover:shadow-md">
+<div class="size-12 rounded-2xl bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">directions_run</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-2">
+<p class="text-slate-800 dark:text-white font-bold text-sm truncate">Morning Run</p>
+<div class="flex items-center gap-1 text-xs font-bold text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                        94%
+                    </div>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-700/50 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full w-[94%] shadow-[0_0_10px_rgba(168,85,247,0.4)]"></div>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-4 p-4 rounded-[1.5rem] bg-surface-light dark:bg-surface-dark shadow-sm active:scale-[0.99] transition-all ring-1 ring-slate-100 dark:ring-white/5 hover:shadow-md">
+<div class="size-12 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-2">
+<p class="text-slate-800 dark:text-white font-bold text-sm truncate">Drink 2L Water</p>
+<div class="flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                        88%
+                    </div>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-700/50 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full w-[88%] shadow-[0_0_10px_rgba(59,130,246,0.4)]"></div>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-4 p-4 rounded-[1.5rem] bg-surface-light dark:bg-surface-dark shadow-sm active:scale-[0.99] transition-all ring-1 ring-slate-100 dark:ring-white/5 hover:shadow-md">
+<div class="size-12 rounded-2xl bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 flex items-center justify-center shrink-0 group-hover:bg-yellow-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">book_2</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-2">
+<p class="text-slate-800 dark:text-white font-bold text-sm truncate">Read 30 mins</p>
+<div class="flex items-center gap-1 text-xs font-bold text-yellow-600 dark:text-yellow-400">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                        76%
+                    </div>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-700/50 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full w-[76%] shadow-[0_0_10px_rgba(234,179,8,0.4)]"></div>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-4 p-4 rounded-[1.5rem] bg-surface-light dark:bg-surface-dark shadow-sm active:scale-[0.99] transition-all ring-1 ring-slate-100 dark:ring-white/5 hover:shadow-md">
+<div class="size-12 rounded-2xl bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 flex items-center justify-center shrink-0 group-hover:bg-pink-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">self_improvement</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-2">
+<p class="text-slate-800 dark:text-white font-bold text-sm truncate">Meditation</p>
+<div class="flex items-center gap-1 text-xs font-bold text-pink-600 dark:text-pink-400">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                        62%
+                    </div>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-700/50 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-pink-400 to-pink-600 rounded-full w-[62%] shadow-[0_0_10px_rgba(236,72,153,0.4)]"></div>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-4 p-4 rounded-[1.5rem] bg-surface-light dark:bg-surface-dark shadow-sm active:scale-[0.99] transition-all ring-1 ring-slate-100 dark:ring-white/5 hover:shadow-md">
+<div class="size-12 rounded-2xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-2">
+<p class="text-slate-800 dark:text-white font-bold text-sm truncate">Healthy Meal</p>
+<div class="flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                        55%
+                    </div>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-700/50 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full w-[55%] shadow-[0_0_10px_rgba(16,185,129,0.4)]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-6 left-6 right-6 h-16 bg-white dark:bg-surface-dark/95 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12)] rounded-full flex justify-between items-center z-50 px-2">
+<button class="flex-1 flex flex-col items-center gap-0.5 py-1 text-slate-400 dark:text-slate-500 hover:text-slate-800 dark:hover:text-white transition-colors group">
+<div class="p-1 rounded-full group-hover:bg-slate-100 dark:group-hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+</div>
+</button>
+<button class="flex-1 flex flex-col items-center gap-0.5 py-1 text-primary relative">
+<div class="absolute -top-12 bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/40 ring-4 ring-background-light dark:ring-background-dark transform transition-transform hover:-translate-y-1">
+<span class="material-symbols-outlined text-[28px] fill-1">bar_chart</span>
+</div>
+</button>
+<button class="flex-1 flex flex-col items-center gap-0.5 py-1 text-slate-400 dark:text-slate-500 hover:text-slate-800 dark:hover:text-white transition-colors group">
+<div class="p-1 rounded-full group-hover:bg-slate-100 dark:group-hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[24px]">face</span>
+</div>
+</button>
+</div>
+
+</body></html>
