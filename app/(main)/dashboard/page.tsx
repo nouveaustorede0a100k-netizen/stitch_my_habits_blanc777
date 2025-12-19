@@ -8,12 +8,13 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 async function getDashboardData(userId: string) {
-  const today = getStartOfDay()
-  const startOfWeek = new Date(today)
-  startOfWeek.setDate(today.getDate() - today.getDay())
+  try {
+    const today = getStartOfDay()
+    const startOfWeek = new Date(today)
+    startOfWeek.setDate(today.getDate() - today.getDay())
 
-  // Get active habits
-  const habits = await prisma.habit.findMany({
+    // Get active habits
+    const habits = await prisma.habit.findMany({
     where: {
       userId,
       isActive: true,
@@ -115,15 +116,33 @@ async function getDashboardData(userId: string) {
     }
   })
 
-  return {
-    habits: habitsWithStats,
-    goals: todayGoals,
-    stats: {
-      completedToday,
-      totalHabits,
-      completionRate,
-    },
-    weekDays,
+    return {
+      habits: habitsWithStats,
+      goals: todayGoals,
+      stats: {
+        completedToday,
+        totalHabits,
+        completionRate,
+      },
+      weekDays,
+    }
+  } catch (error) {
+    console.error('Error fetching dashboard data:', error)
+    // Return empty data if database error
+    return {
+      habits: [],
+      goals: [],
+      stats: {
+        completedToday: 0,
+        totalHabits: 0,
+        completionRate: 0,
+      },
+      weekDays: Array.from({ length: 7 }, (_, i) => ({
+        date: new Date(),
+        completed: false,
+        count: 0,
+      })),
+    }
   }
 }
 
